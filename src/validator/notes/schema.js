@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable eol-last */
 const Joi = require("joi");
 
@@ -7,4 +8,4 @@ const NotePayloadSchema = Joi.object({
   tags: Joi.array().items(Joi.string()).required(),
 });
 
-module.exports = {NotePayloadSchema};
+module.exports = { NotePayloadSchema };
