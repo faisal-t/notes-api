@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 const routes = (handler) => [
   {
     method: 'POST',
