@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const ClientError = require("../../exceptions/ClientError");
 
 class NotesHandler {
