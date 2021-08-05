@@ -5,28 +5,24 @@ class UsersHandler {
     this._service = service;
     this._validator = validator;
 
-    this.PostUserHandler = this.PostUserHandler.bind(this);
+    this.postUserHandler = this.postUserHandler.bind(this);
     this.getUserByIdHandler = this.getUserByIdHandler.bind(this);
   }
 
-  async PostUserHandler(request, h) {
+  async postUserHandler(request, h) {
     try {
       this._validator.validateUserPayload(request.payload);
       const { username, password, fullname } = request.payload;
 
-      const userId = await this._service.addUser({
-        username,
-        password,
-        fullname,
-      });
+      const userId = await this._service.addUser({ username, password, fullname });
+
       const response = h.response({
         status: 'success',
-        message: 'User Berhasil Ditambahkan',
+        message: 'User berhasil ditambahkan',
         data: {
           userId,
         },
       });
-
       response.code(201);
       return response;
     } catch (error) {
@@ -39,13 +35,13 @@ class UsersHandler {
         return response;
       }
 
-      // ERROR SERVER
+      // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, Terjadi kegagalan pada server kami',
+        message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }
@@ -54,7 +50,6 @@ class UsersHandler {
     try {
       const { id } = request.params;
       const user = await this._service.getUserById(id);
-
       return {
         status: 'success',
         data: {
@@ -71,13 +66,13 @@ class UsersHandler {
         return response;
       }
 
-      // ERROR SERVER
+      // server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, Terjadi kegagalan pada server kami',
+        message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }

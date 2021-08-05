@@ -1,4 +1,3 @@
-/* eslint-disable eol-last */
 const NotesHandler = require('./handler');
 const routes = require('./routes');
 
